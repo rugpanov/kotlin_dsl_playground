@@ -58,7 +58,7 @@ object Build : BuildType({
 
     features {
         investigationsAutoAssigner {
-            enableDelayAssignments = true
+            enableDelayAssignments = false
         }
     }
 })
