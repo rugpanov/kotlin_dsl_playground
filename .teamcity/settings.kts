@@ -1,4 +1,8 @@
 import jetbrains.buildServer.configs.kotlin.v2018_2.*
+import jetbrains.buildServer.configs.kotlin.v2018_2.buildFeatures.investigationsAutoAssigner
+import jetbrains.buildServer.configs.kotlin.v2018_2.buildSteps.gradle
+import jetbrains.buildServer.configs.kotlin.v2018_2.triggers.VcsTrigger
+import jetbrains.buildServer.configs.kotlin.v2018_2.vcs.GitVcsRoot
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -25,4 +29,42 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 version = "2019.1"
 
 project {
+    vcsRoot(HttpsGithubComJetBrainsTeamcityInvestigations)
+
+    buildType(Build)
 }
+
+object Build : BuildType({
+    name = "Build"
+
+    vcs {
+        root(HttpsGithubComJetBrainsTeamcityInvestigations)
+    }
+
+    steps {
+        gradle {
+            name = "gradle - build"
+            tasks = "clean build"
+        }
+    }
+
+    triggers {
+        vcs {
+            quietPeriodMode = VcsTrigger.QuietPeriodMode.USE_DEFAULT
+            branchFilter = ""
+        }
+    }
+
+    features {
+        investigationsAutoAssigner {
+            enableDelayAssignments = true
+        }
+    }
+}
+)
+
+object HttpsGithubComJetBrainsTeamcityInvestigations : GitVcsRoot({
+    name = "https://github.com/rugpanov/teamcity-investigations-auto-assigner.git#refs/heads/master"
+    pollInterval = 20
+    url = "https://github.com/rugpanov/teamcity-investigations-auto-assigner.git"
+})
