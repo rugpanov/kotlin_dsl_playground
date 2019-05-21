@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vcs-root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="1618c322-74d2-414c-8ef4-2a63bfa15cc4" type="jetbrains.git" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2018.1/project-config.xsd">
+  <name>https://github.com/rugpanov/kotlin_dsl_playground</name>
+  <param name="agentCleanFilesPolicy" value="ALL_UNTRACKED" />
+  <param name="agentCleanPolicy" value="ON_BRANCH_CHANGE" />
+  <param name="authMethod" value="PASSWORD" />
+  <param name="branch" value="refs/heads/master" />
+  <param name="ignoreKnownHosts" value="true" />
+  <param name="secure:password" value="credentialsJSON:af8fcdba-061a-4a52-8867-07d7c7d869c2" />
+  <param name="submoduleCheckout" value="CHECKOUT" />
+  <param name="url" value="https://github.com/rugpanov/kotlin_dsl_playground" />
+  <param name="useAlternates" value="true" />
+  <param name="username" value="rugpanov" />
+  <param name="usernameStyle" value="USERID" />
+</vcs-root>
+
