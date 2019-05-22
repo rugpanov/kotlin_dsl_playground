@@ -64,7 +64,7 @@ object DefaultValue : BuildType({
 })
 
 object EnabledInKotlin : BuildType({
-    name = "DefaultValues"
+    name = "EnabledInKotlin"
 
     vcs {
         root(HttpsGithubComJetBrainsTeamcityInvestigations)
