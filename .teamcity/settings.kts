@@ -32,11 +32,12 @@ version = "2019.1"
 project {
     vcsRoot(HttpsGithubComJetBrainsTeamcityInvestigations)
 
-    buildType(Build)
+    buildType(DefaultValue)
+    buildType(EnabledInKotlin)
 }
 
-object Build : BuildType({
-    name = "Build"
+object DefaultValue : BuildType({
+    name = "DefaultValue"
 
     vcs {
         root(HttpsGithubComJetBrainsTeamcityInvestigations)
@@ -58,6 +59,34 @@ object Build : BuildType({
 
     features {
         investigationsAutoAssigner {
+        }
+    }
+})
+
+object EnabledInKotlin : BuildType({
+    name = "DefaultValues"
+
+    vcs {
+        root(HttpsGithubComJetBrainsTeamcityInvestigations)
+    }
+
+    steps {
+        gradle {
+            name = "gradle - build"
+            tasks = "clean build"
+        }
+    }
+
+    triggers {
+        vcs {
+            quietPeriodMode = VcsTrigger.QuietPeriodMode.USE_DEFAULT
+            branchFilter = ""
+        }
+    }
+
+    features {
+        investigationsAutoAssigner {
+            enableDelayAssignments=true
         }
     }
 })
